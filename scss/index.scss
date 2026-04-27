@@ -66,6 +66,11 @@ button {
                 align-items: center;
                 gap: 25px;
 
+                .profile {
+                    text-decoration: none;
+                    color: black;
+                }
+
                 button {
                     display: flex;
                     align-items: center;

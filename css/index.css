@@ -63,6 +63,10 @@ button {
   align-items: center;
   gap: 25px;
 }
+#header .header-box .header-info .customer-info .profile {
+  text-decoration: none;
+  color: black;
+}
 #header .header-box .header-info .customer-info button {
   display: flex;
   align-items: center;
