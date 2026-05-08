@@ -1,9 +1,10 @@
-import { getProducts } from "./api.js";
+import { getBestSellerByCategory } from "./api.js";
 import { removeWishlist } from "./api.js";
 import { initWishlist } from "./initWishlist.js";
+import { renderCategory } from "./categories.js";
 
-export async function renderProducts() {
-    const products = await getProducts();
+export async function renderBestSeller() {
+    const products = await getBestSellerByCategory();
 
     const container = document.querySelector(".product-grid");
 
@@ -13,7 +14,7 @@ export async function renderProducts() {
     }
 
     container.innerHTML = products.map(pro => `
-                <article class="product-card" onclick="window.location.href='pages/product-detail.html?id=${pro._id}'">
+                <article class="product-card" onclick="window.location.href='product-detail.html?id=${pro._id}'">
 
                          <div class="product-image">
                              <span class="badge">HOT</span>
@@ -21,11 +22,11 @@ export async function renderProducts() {
 
                              <div class="overlay">
                                  <button class="icon-btn wishlist-btn" data-id="${pro._id}" onclick="event.stopPropagation()">
-                                     <img src="assets/svg/hearts.svg" alt="">
+                                     <img src="../assets/svg/hearts.svg" alt="">
                                  </button>
 
-                                 <button class="icon-btn" onclick="event.stopPropagation(); window.location.href='pages/product-detail.html?id=${pro._id}'">
-                                     <img src="assets/svg/cart_2.svg" alt="">
+                                 <button class="icon-btn" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=${pro._id}'">
+                                     <img src="../assets/svg/cart_2.svg" alt="">
                                  </button>
                              </div>
                          </div>
@@ -36,8 +37,8 @@ export async function renderProducts() {
                              <div class="rating">★★★★☆</div>
 
                              <div class="price">
-                                 <span class="new">$299.43</span>
-                                <span class="old">$534.33</span>
+                                 <span class="new">$${pro.price}</span>
+                                <span class="old">$${pro.originalPrice}</span>
                                  <span class="discount">24% Off</span>
                              </div>
                          </div>
@@ -47,3 +48,13 @@ export async function renderProducts() {
 
     initWishlist();
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+    // categories (mega menu)
+    renderCategory();
+
+    // best seller products
+    if (document.querySelector(".product-grid")) {
+        renderBestSeller();
+    }
+});

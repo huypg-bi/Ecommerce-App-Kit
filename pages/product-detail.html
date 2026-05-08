@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+
+    <!-- Google Font: Poppins -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap">
+
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/product-detail.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header id="header">
+
+        <!-- Top Header -->
+        <div class="header-box">
+            <div class="header-info">
+
+                <div class="local-settings">
+                    <button>EN <img src="../assets/svg/arrow down.svg" alt=""></button>
+                    <button>USD <img src="../assets/svg/arrow down.svg" alt=""></button>
+                </div>
+
+                <div class="customer-info">
+
+                    <div class="my-profile">
+                        <img src="../assets/svg/profile_close_2.svg" alt="">
+                        <a href="login.html" class="profile">My profile</a>
+                    </div>
+
+                    <button><img src="../assets/svg/Group.svg" alt=""></button>
+                    <a href="wishlist.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                            stroke="currentColor" class="heart-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                        </svg>
+                    </a>
+
+                    <div class="name-price">
+                        <span>Item</span>
+                        <span>$0.00</span>
+                    </div>
+
+                    <button><img src="../assets/svg/search-icon.svg" alt=""></button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="header-container-box">
+            <div>
+
+                <div class="web-logo">
+                    <img src="../assets/svg/Icon.svg" alt="logo">
+                    <span>E-comm</span>
+                </div>
+
+                <nav class="nav">
+                    <ul>
+                        <li class="mega-parent">
+                            <a href="../index.html">HOME</a>
+
+                            <div class="mega-menu">
+                                <div class="mega-column" id="mega-category">
+
+                                </div>
+                            </div>
+                        </li>
+
+                        <li><a href="bags.html">BAGS</a></li>
+                        <li><a href="sneaker.html">SNEAKERS</a></li>
+                        <li><a href="belt.html">BELT</a></li>
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+
+    </header>
+
+    <!-- ================= BREADCRUMB ================= -->
+    <section class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="" id="category-link">Category</a>
+            <span>/</span>
+            <span id="product-name">Product</span>
+        </div>
+    </section>
+
+    <!-- ================= PRODUCT DETAIL ================= -->
+    <section class="product-detail">
+        <div class="product-detail-container">
+
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="main-image">
+                    <img id="main-image" src="" alt="Product Image">
+                </div>
+                <div class="thumbnail-images" id="thumbnail-images">
+                    <!-- Thumbnails will be generated here -->
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info-section">
+                <div class="product-header">
+                    <h1 id="product-title"></h1>
+                    <div class="rating-section">
+                        <div class="rating" id="product-rating">★★★★☆</div>
+                        <span class="reviews-count">0 reviews</span>
+                        <a href="#reviews" class="submit-review">Submit a review</a>
+                    </div>
+                </div>
+
+                <!-- Price Section -->
+                <div class="price-section">
+                    <div class="price-wrapper">
+                        <span class="new-price" id="new-price">$299.43</span>
+                        <span class="old-price" id="old-price">$534.33</span>
+                        <span class="discount-badge" id="discount-badge">24% Off</span>
+                    </div>
+                </div>
+
+                <!-- Availability -->
+                <div class="availability">
+                    <div class="availability-item">
+                        <span class="label">Availability:</span>
+                        <span class="status" id="availability">In Stock</span>
+                    </div>
+                    <div class="availability-item">
+                        <span class="label">Category:</span>
+                        <span class="value" id="product-category">Accessories</span>
+                    </div>
+                </div>
+
+                <!-- Color Selection -->
+                <div class="color-selection">
+                    <label>Select Color</label>
+                    <div class="colors" id="color-options">
+                        <!-- Colors will be generated here -->
+                    </div>
+                </div>
+
+                <!-- Size Selection -->
+                <div class="size-selection">
+                    <label>Size</label>
+                    <select id="size-select">
+                        <option value="">Select Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+
+                <!-- Quantity & Add to Cart -->
+                <div class="quantity-section">
+                    <div class="quantity-control">
+                        <button class="qty-btn minus" id="qty-minus">−</button>
+                        <input type="text" id="quantity" value="1" readonly>
+                        <button class="qty-btn plus" id="qty-plus">+</button>
+                    </div>
+                    <button class="btn-add-cart" id="add-to-cart">
+                        <img src="../assets/svg/cart_2.svg" alt="">
+                        Add to Cart
+                    </button>
+                    <button class="btn-wishlist" id="add-to-wishlist">
+                        <img src="../assets/svg/hearts.svg" alt="">
+                    </button>
+                </div>
+
+                <!-- Share Section -->
+                <div class="share-section">
+                    <button class="btn-share facebook">
+                        <img src="../assets/img/facebook.png" alt="">
+                        Share on Facebook
+                    </button>
+                    <button class="btn-share twitter">
+                        <img src="../assets/img/twitter.png" alt="">
+                        Share on Twitter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Best Seller Box (Right Side) -->
+            <div class="best-seller-box" id="best-seller-box">
+                <div class="bs-label">BEST SELLER</div>
+                <div class="bs-product" id="bs-product">
+                    <!-- Best seller product will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- ================= PRODUCT TABS ================= -->
+    <section class="product-tabs">
+        <div class="tabs-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="description">Product Information</button>
+                <button class="tab-btn" data-tab="reviews">Reviews <span id="review-count">0</span></button>
+                <button class="tab-btn" data-tab="other">Another tab</button>
+            </div>
+
+            <div class="tab-contents">
+                <div class="tab-content active" id="description">
+                    <p id="product-description">
+                        Product description will appear here...
+                    </p>
+                </div>
+
+                <div class="tab-content" id="reviews">
+                    <div class="reviews-list">
+                        <!-- Reviews will be generated here -->
+                    </div>
+                </div>
+
+                <div class="tab-content" id="other">
+                    <p>Another tab content</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= RELATED PRODUCTS ================= -->
+    <section class="related-products">
+        <div class="related-container">
+            <h2>RELATED PRODUCTS</h2>
+            <div class="related-grid" id="related-products">
+                <!-- Related products will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+
+        <div class="container">
+            <!-- top footer -->
+            <div class="ft1">
+                <div class="ft">
+                    <div class="item-icon">
+                        <img src="../assets/svg/Icon.svg" alt="icon">
+                        <h3>E-Comm</h3>
+                    </div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever.
+                        Since the 1500s, when an unknown printer.</p>
+                </div>
+
+                <div class="ft">
+                    <h3>Follow Us</h3>
+                    <p>Since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+                    <div class="icon">
+                        <img src="../assets/img/facebook.png" alt="fb-icon">
+                        <img src="../assets/img/twitter.png" alt="tw-icon">
+                    </div>
+                </div>
+
+                <div class="ft">
+                    <h3>Contact Us</h3>
+                    <p>E-Comm , 4578 Marmora Road, Glasgow D04 89GR</p>
+                </div>
+            </div>
+
+            <!-- middle footer -->
+            <div class="ft2">
+                <div class="ft-col">
+                    <h3>Infomation</h3>
+                    <p>About Us</p>
+                    <p>Information</p>
+                    <p>Privacy Policy</p>
+                    <p>Terms & Conditions</p>
+
+                </div>
+
+                <div class="ft-col">
+                    <h3>Service</h3>
+                    <p>About Us</p>
+                    <p>Information</p>
+                    <p>Privacy Policy</p>
+                    <p>Terms & Conditions</p>
+                </div>
+
+                <div class="ft-col">
+                    <h3>My Account</h3>
+                    <p>About Us</p>
+                    <p>Information</p>
+                    <p>Privacy Policy</p>
+                    <p>Terms & Conditions</p>
+                </div>
+
+                <div class="ft-col">
+                    <h3>Our Offers</h3>
+                    <p>About Us</p>
+                    <p>Information</p>
+                    <p>Privacy Policy</p>
+                    <p>Terms & Conditions</p>
+                </div>
+            </div>
+
+            <!-- bottom footer -->
+            <div class="ft3">
+                <p>Copyright © 2024 <span>E-Comm</span> All rights reserved</p>
+                <div class="payment-icons">
+                    <img src="../assets/img/Western-union.png" alt="Western">
+                    <img src="../assets/img/Group 19.png" alt="Master">
+                    <img src="../assets/img/Paypal.png" alt="Paypal">
+                    <img src="../assets/img/visa-logo.jpg" alt="Visa">
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <script type="module" src="../js/product-detail.js"></script>
+</body>
+
+</html>
