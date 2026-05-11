@@ -140,7 +140,10 @@ button {
 #header .header-container-box > div .nav .mega-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: max-content;
+  min-width: 600px;
   padding: 30px;
   background: white;
   display: grid;
@@ -149,14 +152,13 @@ button {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
   transition: 0.3s ease;
   z-index: 1000;
 }
 #header .header-container-box > div .nav .mega-parent:hover .mega-menu {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 #header .header-container-box > div .nav .mega-column {
   display: flex;

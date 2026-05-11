@@ -5,6 +5,7 @@ export async function initUser() {
 
     if (!token) return;
 
+
     try {
         const user = await getMe();
 

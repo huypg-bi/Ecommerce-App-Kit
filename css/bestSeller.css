@@ -8,6 +8,7 @@
   font-size: 14px;
   display: flex;
   justify-content: center;
+  background-color: #F6F7F8;
 }
 .breadcrumb a {
   color: #40BFFF;
