@@ -1,0 +1,133 @@
+@use "variable" as v;
+
+/* ================= BREADCRUMB ================= */
+.breadcrumb {
+    background-color: #F6F7F8; // Màu nền xám nhạt đặc trưng
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    gap: 10px;
+
+    a {
+        color: v.$blue; // Màu xanh Adidas của bạn
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    span {
+        color: #C1C8CE; // Màu xám cho chữ "Contact" và dấu "/"
+    }
+}
+
+/* ================= CONTACT SECTION (Phần giữa) ================= */
+.contact-section {
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+
+    .contact-container {
+        display: flex;
+        width: 100%;
+        position: relative;
+    }
+
+    // Khối thông tin màu xanh bên trái
+    .contact-info-card {
+        background-color: v.$blue;
+        color: white;
+        padding: 40px;
+        width: 35%;
+        border-radius: 5px;
+        z-index: 2; // Ưu tiên nằm trên
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 400px;
+
+        h3 {
+            font-size: 24px;
+            margin-bottom: 25px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+
+            p {
+                font-size: 16px;
+                line-height: 1.5;
+            }
+        }
+
+        // Hình ảnh decor mờ (đôi giày)
+        .bg-decor {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 180px;
+            opacity: 0.1;
+        }
+    }
+
+    // Form nhập liệu bên phải
+    .contact-form {
+        background: white;
+        width: 70%;
+        margin-left: -5%; // Kỹ thuật kéo form vào dưới khối xanh 5%
+        padding: 60px 50px 50px 100px; // Padding-left lớn để tránh bị khối xanh che chữ
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        z-index: 1;
+
+        .input-group {
+            margin-bottom: 20px;
+
+            label {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 8px;
+            }
+
+            input,
+            textarea {
+                width: 100%;
+                padding: 12px 15px;
+                border: 1px solid #F1F3F4;
+                border-radius: 5px;
+                outline: none;
+
+                &:focus {
+                    border-color: v.$blue;
+                }
+            }
+
+            textarea {
+                height: 120px;
+                resize: none;
+            }
+        }
+
+        .btn-submit {
+            background-color: v.$blue;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background-color: darken(#40BFFF, 10%);
+            }
+        }
+    }
+}

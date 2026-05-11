@@ -49,6 +49,19 @@ export async function registerAPI(name, email, password) {
     return data.result;
 }
 
+export async function getMe() {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/auth/me`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    })
+    const data = await res.json();
+
+    return data.result;
+}
+
 // Categories
 export async function getCategories() {
     const res = await fetch(`${BASE_URL}/api/categories`);

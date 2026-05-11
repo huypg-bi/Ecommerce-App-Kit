@@ -37,8 +37,68 @@
 
     .container {
         display: grid;
+        // Chia làm 2 cột: 250px cho sidebar và phần còn lại (1fr) cho content
         grid-template-columns: 250px 1fr;
-        gap: 40px;
+        gap: 30px; // Khoảng cách giữa Sidebar và Content
+        align-items: start;
+    }
+
+    .products-content {
+        display: flex;
+        flex-direction: column; // Xếp chồng Banner -> Header -> Grid theo chiều dọc
+        gap: 20px; // Khoảng cách giữa các khối bên trong cột phải
+
+        .promo-banner {
+            display: flex;
+            align-items: center;
+            padding: 40px 40px;
+            position: relative;
+            margin-top: 0px;
+
+            .promo-text {
+                flex: 1;
+                z-index: 2;
+
+                h2 {
+                    font-size: 48px; // Chữ tiêu đề lớn
+                    font-weight: 500;
+                    line-height: 1.1;
+                    margin-bottom: 20px;
+                    letter-spacing: 0.5px;
+                }
+
+                p {
+                    font-size: 18px;
+                    font-weight: 300;
+                    margin-bottom: 30px;
+                    max-width: 350px;
+                    line-height: 1.6;
+                }
+            }
+
+            .promo-img {
+                flex: 1;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+            }
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f6f7f8;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .product-grid {
+            display: grid;
+            // Tự động chia cột sản phẩm (ví dụ 3 cột)
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
     }
 }
 

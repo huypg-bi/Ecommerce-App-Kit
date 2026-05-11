@@ -3,6 +3,7 @@ import { initAuth } from "./auth.js";
 import { renderCategory } from "./categories.js";
 import { renderWishlist } from "./renderWishlist.js";
 import { renderFeatured } from "./featured.js";
+import { initUser } from "./user.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
     // auth (login/register)
@@ -26,5 +27,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     // featured (home page)
     if (document.querySelector(".fea-pro")) {
         renderFeatured();
+    }
+
+    // get useName
+    if (document.querySelector(".profile")) {
+        initUser();
     }
 });

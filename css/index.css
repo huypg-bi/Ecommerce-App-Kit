@@ -63,11 +63,6 @@ button {
   align-items: center;
   gap: 25px;
 }
-#header .header-box .header-info .customer-info .my-profile {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 #header .header-box .header-info .customer-info .profile {
   text-decoration: none;
   color: black;
@@ -80,16 +75,6 @@ button {
   color: #373737;
 }
 #header .header-box .header-info .customer-info img {
-  width: 16px;
-  height: 16px;
-}
-#header .header-box .header-info .customer-info a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #373737;
-}
-#header .header-box .header-info .customer-info .heart-icon {
   width: 16px;
   height: 16px;
 }
@@ -294,7 +279,6 @@ button {
 .best-seller {
   margin-top: 220px;
   padding: 60px 0;
-  background: #f8f8f8;
 }
 .best-seller .container {
   max-width: 1200px;
@@ -421,12 +405,6 @@ button {
   background: #40BFFF;
 }
 .best-seller .product-card .product-image .overlay .icon-btn:hover img {
-  filter: brightness(0) invert(1);
-}
-.best-seller .product-card .product-image .overlay .wishlist-btn.active {
-  background: #ff4444;
-}
-.best-seller .product-card .product-image .overlay .wishlist-btn.active img {
   filter: brightness(0) invert(1);
 }
 .best-seller .product-card:hover .overlay {
