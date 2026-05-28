@@ -71,6 +71,61 @@ button {
                     color: black;
                 }
 
+                .dropdown-arrow {
+                    transition: transform 0.2s ease;
+                }
+
+                .dropdown-menu {
+                    position: absolute;
+                    top: calc(100% + 8px);
+                    right: 0;
+                    background: white;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+                    min-width: 160px;
+                    padding: 8px 0;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(-6px);
+                    transition: all 0.2s ease;
+                    z-index: 1001;
+
+                    .dropdown-item {
+                        display: block;
+                        width: 100%;
+                        padding: 10px 16px;
+                        text-decoration: none;
+                        color: v.$light-black;
+                        font-size: 14px;
+                        font-family: inherit;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                        text-align: left;
+                        transition: background 0.15s;
+
+                        &:hover {
+                            background: rgba(0, 0, 0, 0.04);
+                        }
+                    }
+                }
+
+                .my-profile {
+                    position: relative;
+
+                    &.open {
+                        .dropdown-menu {
+                            opacity: 1;
+                            visibility: visible;
+                            transform: translateY(0);
+                        }
+
+                        .dropdown-arrow {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+
                 button {
                     display: flex;
                     align-items: center;

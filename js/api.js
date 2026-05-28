@@ -110,3 +110,137 @@ export async function removeWishlist(productId) {
 
     return res.json();
 }
+
+// admin 
+
+// Product
+export async function createProduct(product) {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/products`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(product),
+    });
+    const data = await res.json();
+    console.log(data);
+
+
+    return data.result;
+
+}
+
+export async function updateProduct(product) {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/products/${product.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(product),
+    });
+    const data = await res.json();
+
+    return data.result;
+}
+
+export async function deleteProduct(productId) {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/products/${productId}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    });
+    const data = await res.json();
+
+    return data.result;
+}
+
+export async function patchFlagProduct(productId) {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/products/${productId}/flag`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    });
+    const data = await res.json();
+
+    return data.result;
+}
+
+// Category
+export async function createCategory(category) {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/categories`, {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(category),
+    })
+    const data = await res.json();
+
+    return data.result;
+}
+
+export async function updateCategory(category) {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/categories/${category.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(category),
+    })
+    const data = await res.json();
+
+    return data.result;
+}
+
+export async function deleteCategory(id) {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${BASE_URL}/api/categories/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+    })
+    const data = await res.json();
+
+    return data.result;
+}
+
+// Upload img
+export async function uploadImg(img) {
+    const token = localStorage.getItem("token");
+
+    const formData = new FormData();
+    formData.append("image", img);
+
+    const res = await fetch(`${BASE_URL}/api/upload`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        body: formData,
+    })
+    const data = await res.json();
+
+    console.log(data);
+
+    return data.result;
+}

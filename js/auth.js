@@ -1,5 +1,10 @@
 import { loginAPI, registerAPI } from "./api.js";
 
+export function logout(redirectUrl = "../index.html") {
+    localStorage.removeItem("token");
+    window.location.href = redirectUrl;
+}
+
 export function initAuth() {
 
     const login = document.querySelector("#login-form");
@@ -17,14 +22,18 @@ export function initAuth() {
                 const data = await loginAPI(email, password);
 
                 if (!data || !data.token) {
-                    console.log("NO TOKEN FOUND!");
-                    alert("Login failed! No token received");
+                    alert("Login failed!");
                     return;
                 }
 
                 localStorage.setItem("token", data.token);
 
-                window.location.href = "../index.html"
+                const isAdmin = data.user?.role === "admin";
+                const redirectUrl = isAdmin
+                    ? "../admin/pages/adminDashboard.html"
+                    : "../index.html";
+
+                window.location.href = redirectUrl;
 
             } catch (err) {
                 console.error("Error caught:", err);
@@ -51,9 +60,12 @@ export function initAuth() {
 
                 localStorage.setItem("token", data.token);
 
-                alert("Register success!");
+                const isAdmin = data.user?.role === "admin";
+                const redirectUrl = isAdmin
+                    ? "../admin/pages/adminDashboard.html"
+                    : "../index.html";
 
-                window.location.href = "../pages/login.html";
+                window.location.href = redirectUrl;
             } catch (err) {
                 console.error(err);
                 alert("Error register!");

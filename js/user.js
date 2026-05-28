@@ -5,7 +5,6 @@ export async function initUser() {
 
     if (!token) return;
 
-
     try {
         const user = await getMe();
 
@@ -14,6 +13,24 @@ export async function initUser() {
         if (profileText) {
             profileText.textContent = user.name;
         }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function getAndSetUserName() {
+    const token = localStorage.getItem("token");
+    const profileName = document.getElementById("profileName");
+    const profileLink = document.getElementById("profileLink");
+
+    if (!token) {
+        if (profileName) profileName.textContent = "My profile";
+        return;
+    }
+
+    try {
+        const user = await getMe();
+        if (profileName) profileName.textContent = user.name;
     } catch (error) {
         console.error(error);
     }

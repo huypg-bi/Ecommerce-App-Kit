@@ -25,14 +25,20 @@
 
                 <div class="customer-info">
 
-                    <div class="my-profile">
+                    <div class="my-profile" id="profileDropdown">
                         <img src="../assets/svg/profile_close_2.svg" alt="">
-                        <a href="pages/login.html" class="profile">My profile</a>
+                        <span class="profile" id="profileName">My profile</span>
+                        <img src="../assets/svg/arrow down.svg" alt="" class="dropdown-arrow">
+
+                        <div class="dropdown-menu" id="profileMenu">
+                            <a href="login.html" class="dropdown-item" id="profileLink">My Profile</a>
+                            <button class="dropdown-item" id="logoutBtn">Logout</button>
+                        </div>
                     </div>
 
                     <button><img src="../assets/svg/Group.svg" alt=""></button>
-                    <a href="pages/wishlist.html">
-                        <img src="assets/svg/heart.svg" alt="">
+                    <a href="wishlist.html">
+                        <img src="../assets/svg/heart.svg" alt="">
                     </a>
 
                     <div class="name-price">
@@ -209,6 +215,7 @@
             </div>
         </div>
     </footer>
+    <script type="module" src="../js/main.js"></script>
 </body>
 
 </html>

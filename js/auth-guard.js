@@ -2,17 +2,11 @@ export function preventAuthPages() {
 
     const token = localStorage.getItem("token");
 
-    // nếu đã login
-    if (token) {
+    if (!token) return;
 
-        // nếu đang ở login/register
-        const path = window.location.pathname;
+    const path = window.location.href;
 
-        if (
-            path.includes("login.html") ||
-            path.includes("register.html")
-        ) {
-            window.location.href = "../index.html";
-        }
+    if (path.includes("login.html") || path.includes("register.html")) {
+        window.location.href = "../index.html";
     }
 }

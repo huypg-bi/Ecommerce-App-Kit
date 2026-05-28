@@ -1,5 +1,4 @@
 import { getProducts } from "./api.js";
-import { removeWishlist } from "./api.js";
 import { initWishlist } from "./initWishlist.js";
 
 export async function renderProducts() {
@@ -13,7 +12,7 @@ export async function renderProducts() {
     }
 
     container.innerHTML = products.map(pro => `
-                <article class="product-card" onclick="window.location.href='pages/product-detail.html?id=${pro._id}'">
+                    <article class="product-card" data-id="${pro._id}">
 
                          <div class="product-image">
                              <span class="badge">HOT</span>
@@ -36,8 +35,8 @@ export async function renderProducts() {
                              <div class="rating">★★★★☆</div>
 
                              <div class="price">
-                                 <span class="new">$299.43</span>
-                                <span class="old">$534.33</span>
+                                 <span class="new">$${pro.price}</span>
+                                <span class="old">$${pro.originalPrice}</span>
                                  <span class="discount">24% Off</span>
                              </div>
                          </div>
@@ -46,4 +45,12 @@ export async function renderProducts() {
         `).join("");
 
     initWishlist();
+
+    // Click on card → go to detail (no duplicate with button clicks)
+    container.querySelectorAll(".product-card").forEach(card => {
+        card.addEventListener("click", (e) => {
+            const id = card.dataset.id;
+            window.location.href = `pages/product-detail.html?id=${id}`;
+        });
+    });
 }

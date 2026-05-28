@@ -14,7 +14,7 @@ export async function renderBestSeller() {
     }
 
     container.innerHTML = products.map(pro => `
-                <article class="product-card" onclick="window.location.href='product-detail.html?id=${pro._id}'">
+                    <article class="product-card" data-id="${pro._id}">
 
                          <div class="product-image">
                              <span class="badge">HOT</span>
@@ -47,6 +47,13 @@ export async function renderBestSeller() {
         `).join("");
 
     initWishlist();
+
+    container.querySelectorAll(".product-card").forEach(card => {
+        card.addEventListener("click", (e) => {
+            const id = card.dataset.id;
+            window.location.href = `product-detail.html?id=${id}`;
+        });
+    });
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

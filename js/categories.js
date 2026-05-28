@@ -10,7 +10,7 @@ export async function renderCategory() {
     container.innerHTML += `
         <h4>Category</h4>
         ${categories.map(c => `
-            <a href="#" data-id="${c._id}">${c.name}</a>
+            <a href="pages/bestSeller.html?category=${c.slug || c._id}" data-id="${c._id}">${c.name}</a>
         `).join("")}
     `;
 }
