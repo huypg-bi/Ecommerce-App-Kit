@@ -1,93 +1,50 @@
 import {
     createProduct,
-    deleteProduct,
-    getCategories,
-    getProducts,
     patchFlagProduct,
     updateProduct,
     uploadImg
 } from "../../js/api.js";
+import { clearErrors } from "../utils/clearErrors.js";
+import { renderCategoryOptions } from "../utils/renderCategoryOption.js";
+import { renderProductsTable } from "../utils/renderTable.js";
 import { showErrors } from "../utils/showErrors.js";
-
+import { productFormTemplate } from "../utils/template.js";
 import { validateProduct } from "../utils/validate_admin.js";
 
 export function renderProduct() {
 
     const content = document.querySelector(".admin-content");
 
-    content.innerHTML = `
-        <div class="products-container">
-            <h1>Quản lý sản phẩm</h1>
-
-            <form id="createForm">
-
-                <input type="text" id="productName" placeholder="Tên sản phẩm" />
-                <p class="error" id="nameErr"></p>
-
-                <input type="number" id="productPrice" placeholder="Giá" />
-                <p class="error" id="priceErr"></p>
-
-                <input type="text" id="productDesc" placeholder="Mô tả" />
-                <p class="error" id="descErr"></p>
-
-                <input type="number" id="productStock" placeholder="Số lượng tồn kho" />
-                <p class="error" id="stockErr"></p>
-
-                <input type="number" id="productSoldCount" placeholder="Số lượng đã bán" />
-
-                <select id="productIsFeatured">
-                    <option value="false">Normal</option>
-                    <option value="true">HOT</option>
-                </select>
-
-                <select id="productCategoryId">
-                    <option value="">-- Chọn category --</option>
-                </select>
-                <p class="error" id="categoryErr"></p>
-
-                <input type="file" id="productImage" multiple accept="image/*" />
-
-                <p id="uploadErr" style="color:red;"></p>
-                <p id="uploadMes" style="color:green;"></p>
-
-                <button type="submit" id="submitBtn">Lưu sản phẩm</button>
-                <table id="productsTable"></table>
-            </form>
-
-            <!-- Thêm form edit -->
-            <div id="updateForm" style="display:none;">
-                <input type="text" id="updateName" placeholder="Tên sản phẩm" />
-                <input type="text" id="updateDesc" placeholder="Mô tả" />
-                <input type="number" id="updatePrice" placeholder="Giá" />
-                <input type="number" id="updateStock" placeholder="Số lượng tồn kho" />
-                <input type="number" id="updateSoldCount" placeholder="Số lượng đã bán" />
-                <select id="updateIsFeatured">
-                    <option value="false">Normal</option>
-                    <option value="true">HOT</option>
-                </select>
-                <select id="updateCategoryId">
-                    <option value="">-- Chọn category --</option>
-                </select>
-                <input type="file" id="updateImage" accept="image/*" />
-                <p id="updateErr" style="color:red;"></p>
-                <p id="updateMes" style="color:green;"></p>
-                <button type="button" id="updateSubmitBtn">Cập nhật</button>
-                <button type="button" id="updateCancelBtn">Hủy</button>
-            </div>
-        </div>
-    `;
+    content.innerHTML = productFormTemplate();
 
     document
         .getElementById("createForm")
         .addEventListener("submit", handleCreate);
 
-    document.getElementById("updateSubmitBtn").addEventListener("click", handleUpdate);
-    document.getElementById("updateCancelBtn").addEventListener("click", () => {
-        document.getElementById("updateForm").style.display = "none";
-    });
+    document
+        .getElementById("updateSubmitBtn")
+        .addEventListener("click", handleUpdate);
+
+    document
+        .getElementById("updateCancelBtn")
+        .addEventListener("click", () => {
+            document.getElementById("updateForm").style.display = "none";
+        });
+
+    document
+        .getElementById("createBtn")
+        .addEventListener("click", () => {
+            document.getElementById("createForm").style.display = "block";
+        });
+
+    document
+        .getElementById("cancelBtn")
+        .addEventListener("click", () => {
+            document.getElementById("createForm").style.display = "none";
+        });
 
     renderProductsTable();
-    renderCategoryOptions();
+    renderCategoryOptions("productCategoryId");
 }
 
 async function handleCreate(e) {
@@ -179,13 +136,6 @@ async function handleCreate(e) {
     }
 }
 
-function clearErrors() {
-
-    document.querySelectorAll(".error").forEach(item => {
-        item.textContent = "";
-    });
-}
-
 async function handleUpdate() {
     const updateErr = document.getElementById("updateErr");
     const updateMes = document.getElementById("updateMes");
@@ -221,81 +171,6 @@ async function handleUpdate() {
     renderProductsTable();
 }
 
-async function handleDelete(productId) {
-    if (!confirm("Bạn muốn xóa sản phẩm này?")) return;
-
-    await deleteProduct(productId);
-    renderProductsTable();
-}
-
 async function patchFlag(productId) {
     await patchFlagProduct(productId);
-}
-
-export async function renderProductsTable() {
-    const table = document.getElementById("productsTable");
-
-    const products = await getProducts();
-
-    table.innerHTML = `
-        <tr>
-            <th>Tên</th>
-            <th>Mô tả</th>
-            <th>Giá</th>
-            <th>Hình ảnh</th>
-            <th>Danh mục sản phẩm</th>
-            <th>Trạng thái</th>
-        </tr>
-    `
-
-    products.forEach(product => {
-
-        table.innerHTML += `
-            <tr>
-                <td>${product.name}</td>
-                <td>${product.description}</td>
-                <td>${product.price}</td>
-                <td>${product.image}</td>
-                <td>${product.category.name}</td>
-                <td>
-                    <button class="deleteBtn" data-id="${product._id}">Xóa</button>
-                    <button class="editBtn" data-id="${product._id}" data-name="${product.name}" data-desc="${product.description}" data-price="${product.price}" data-img="${product.image}" data-slug="${product.category.name}">Sửa</button>
-                </td>
-            </tr>
-        `
-    });
-
-    document.querySelectorAll(".deleteBtn").forEach(btn => {
-        btn.addEventListener("click", () => handleDelete(btn.dataset.id));
-    });
-
-    document.querySelectorAll(".editBtn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.getElementById("updateId").value = btn.dataset.id;
-            document.getElementById("updateName").value = btn.dataset.name;
-            document.getElementById("updateDesc").value = btn.dataset.desc;
-            document.getElementById("updatePrice").value = btn.dataset.price;
-
-            // Lưu url ảnh cũ vào data attribute để dùng nếu không upload ảnh mới
-            document.getElementById("updateImage").dataset.currentImg = btn.dataset.img;
-
-            document.getElementById("updateForm").style.display = "block";
-        });
-    });
-}
-
-async function renderCategoryOptions() {
-
-    const select = document.getElementById("productCategoryId");
-
-    const categories = await getCategories();
-
-    categories.forEach(category => {
-
-        select.innerHTML += `
-            <option value="${category._id}">
-                ${category.name}
-            </option>
-        `;
-    });
 }

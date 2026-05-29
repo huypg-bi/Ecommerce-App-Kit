@@ -24,6 +24,6 @@ document.querySelectorAll("a.nav-item").forEach(item => {
             renderProduct();
         } else if (page === "categories") {
             renderCategory();
-        }
+        } 
     })
 })
